@@ -1,3 +1,6 @@
+@echo off
 git add *
-git commit -m "auto push"
+set /p input= Commit:
+echo input
+git commit -m input
 git push 
