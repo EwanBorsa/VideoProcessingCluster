@@ -89,7 +89,7 @@
 	background: #000000;
 }
 .video-processing-cluster {
-	width: 1080px;
+	width: max-content;
 	height: 226px;
 	color: #000000;
 	font-family: "Audiowide";
