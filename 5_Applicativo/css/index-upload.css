@@ -41,7 +41,7 @@
 	text-align: center;
 }
 
-.rilascia-qui {
+.text {
 	width: 100%;
 	color: #000000;
 	font-family: "Aldrich";
@@ -75,7 +75,7 @@
 }
 
 .video-processing {
-	height: 200px;
+	height: 100px;
 	color: #000000;
 	font-family: "Audiowide";
 	font-weight: 420;

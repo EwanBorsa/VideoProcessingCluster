@@ -26,25 +26,23 @@
         }
     </script>
 </head>
+
 <body style="text-align: center;">
+    <form action="/upload.php" class="dropzone">
     <h1 class="video-processing">Video Processing Cluster</h1>
-    
-    <div class="rect-upload">
-        <img src="images/upload.png" alt="UPLOAD" width="100" style="margin:10px"></img>
-        <br><button class="button-upload">Carica il tuo video</button><br>
-        <br><hr><div class="altrimenti">ALTRIMENTI</div><hr><br>
-        <form action="upload.php" class="dropzone">
-        <div class="rilascia-qui">Trascina e rilascia qui</div><br>
-        <div class="formati-file">Formati file supportati: MP4, MOV, MKV, AVI, WMV, FLV, GIF<br>Max. 500MB</div>
-        </form>
-        
-    </div>
+        <div class="rect-upload">
+            <img src="images/upload.png" alt="UPLOAD" width="100" style="margin:10px"></img>
+            <div class="text">Carica il tuo video</div>
+            <br><hr><div class="altrimenti">ALTRIMENTI</div><hr><br>
+            <div class="text">Trascina e rilascia qui</div><br>
+            <div class="formati-file">Formati file supportati: MP4, MOV, MKV, AVI, WMV, FLV, GIF<br>Max. 500MB</div> 
+        </div>
     <br><br>
     <div class="progress-bar" id="myProgress">
         <div class="progress-bar" id="myBar"></div>
     </div>
-    
     <br><br><br><br><br><br><br><br>
     <a href="https://www.flaticon.com/free-icons/video" title="video icons">Video icons created by Hilmy Abiyyu A. - Flaticon</a>
+    </form>
 </body> 
 </html>
