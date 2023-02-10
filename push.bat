@@ -1,3 +1,5 @@
+@echo off
 git add *
-git commit -m "auto push"
+set /p "c=Commento: "
+git commit -m %c%
 git push 
