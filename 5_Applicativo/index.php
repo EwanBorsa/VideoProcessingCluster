@@ -6,13 +6,13 @@
     <link href="css/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="dropzone.js"></script>
     <script>
-        var i = 0;
         function move() {
+            var i = 0;
             if (!i) {
                 i = 1;
                 var elem = document.getElementById("myBar");
                 var width = 1;
-                var id = setInterval(frame, 10);
+                var id = setInterval(frame, 50);
                 function frame() {
                     if (width >= 100) {
                         clearInterval(id);
@@ -28,7 +28,7 @@
 </head>
 
 <body style="text-align: center;">
-    <form action="/upload.php" class="dropzone">
+<form action="/upload.php" class="dropzone">
     <h1 class="video-processing">Video Processing Cluster</h1>
         <div class="rect-upload">
             <img src="images/upload.png" alt="UPLOAD" width="100" style="margin:10px"></img>
@@ -41,8 +41,6 @@
     <div class="progress-bar" id="myProgress">
         <div class="progress-bar" id="myBar"></div>
     </div>
-    <br><br><br><br><br><br><br><br>
-    <a href="https://www.flaticon.com/free-icons/video" title="video icons">Video icons created by Hilmy Abiyyu A. - Flaticon</a>
-    </form>
+</form>
 </body> 
 </html>
