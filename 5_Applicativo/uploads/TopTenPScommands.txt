@@ -1,0 +1,10 @@
+﻿Get-Help
+cd
+ls
+cp
+rm
+ni
+gi
+ii
+rni
+cli
