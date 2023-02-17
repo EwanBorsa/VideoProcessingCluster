@@ -1,0 +1,1 @@
+https://www.haproxy.com/documentation/aloha/latest/load-balancing/health-checks/agent-checks/
