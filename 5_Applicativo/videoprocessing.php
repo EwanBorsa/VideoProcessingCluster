@@ -1,72 +1,40 @@
-<!doctype html>
-<html>
-    <head>
-    <link rel="stylesheet" href="css/processingvideo.css">
-    </head>
-    <body>
-        <h1 >Video Processing Cluster</h1>
-        <div class="divVideo">
-            <video controls class="video">
-                <!--<source src="video.mp4" type="video/mp4">-->
-            </video>
-        </div>
+<?php
+readfile("./html/videoprocessing.html");
+$ds = DIRECTORY_SEPARATOR;  
 
-        <div class="divButton">
-            <button id="button1">Scarica video con i motion vector</button>
-            <br>
-            <br>
-            <br>
-            <button id="button2">Scarica video con i frame selezionati</button>
-            <br>
-            <br>
-            <!--<select id="framesVideo" name="framesVideo">
-                <option value="I">I</option>
-                <option value="B">B</option>
-                <option value="P">P</option>
-            </select>-->
-            <form class="check1">
-                <input type="checkbox" id="framesVideoI" name="framesVideoI" value="I">
-                <label for="vehicle1"> I </label>
-                <input type="checkbox" id="framesVideoB" name="framesVideoB" value="B">
-                <label for="vehicle2"> B </label>
-                <input type="checkbox" id="framesVideoP" name="framesVideoP" value="P">
-                <label for="vehicle3"> P </label>
-            </form>
-            <br>
-            <br>
-            <button id="button2">Scarica i frame selezionati</button>
-            <br>
-            <br>
-            <form class="check2">
-                <input type="checkbox" id="framesI" name="framesI" value="I">
-                <label for="vehicle1"> I </label>
-                <input type="checkbox" id="framesB" name="framesVideoB" value="B">
-                <label for="vehicle2"> B </label>
-                <input type="checkbox" id="framesP" name="framesP" value="P">
-                <label for="vehicle3"> P </label>
-            </form>
-            
-        </div>
-        
-        <h3>Statistica dei frame del video</h3>
+$storeFolder = 'uploads';
 
-        <div class="divTable">
-            <table>
-                <tr>
-                    <th>I frame</th>
-                    <th>B Frame</th>
-                    <th>P Frame</th>
-                </tr>
-                <tr>
-                    <td>0 - 0%</td>
-                    <td>0 - 0%</td>
-                    <td>0 - 0%</td>
-                </tr>
-            </table>
-        </div>  
+if (!empty($_FILES)) {
+    
+    $tempFile = $_FILES['file']['tmp_name'];         
+      
+    $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;
+     
+    $targetFile =  $targetPath. $_FILES['file']['name'];
+ 
+    move_uploaded_file($tempFile,$targetFile);
 
-        <h3>Grafico dei frame del video</h3>
-
-        
-    </body>
-</html>
+    $url='./videoprocessing.php';
+    header("Location: " . $url);
+    die();
+}
+ 
+function check(){
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        return false;
+    }
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        return false;
+    }
+    // Allow certain file formats
+    if($fileType != "") {
+        echo "Sorry, only audio/videos files are allowed.";
+        return false;
+    }
+    return true;
+}
+?>
