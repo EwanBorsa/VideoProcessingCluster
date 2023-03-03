@@ -30,6 +30,8 @@ Vagrant.configure("2") do |config|
 			web1config.proxy.https    = PROXY_HTTPS
 			web1config.proxy.no_proxy = PROXY_EXCLUDE 
 		end
+	
+		web1config.vm.network :hostonly, WEB1_IP
 		
 	web1config.vm.provision "shell", path: "./scripts/provision_update.sh"	
 	web1config.vm.provision "shell", path: "./scripts/provision_apache.sh"
@@ -48,6 +50,8 @@ Vagrant.configure("2") do |config|
 			web2config.proxy.https    = PROXY_HTTPS
 			web2config.proxy.no_proxy = PROXY_EXCLUDE 
 		end
+
+		web2config.vm.network :hostonly, WEB2_IP
 		
 	web2config.vm.provision "shell", path: "./scripts/provision_update.sh"	
 	web2config.vm.provision "shell", path: "./scripts/provision_apache.sh"
@@ -69,6 +73,8 @@ Vagrant.configure("2") do |config|
 		
 		#dbconfig.vm.hostname = "clusterdb.cpt.local"
 		#dbconfig.vm.network "private_network", ip: "#{BASE_NETWORK}.15", virtualbox__intnet: true
+
+		dbconfig.vm.network :hostonly, DB_IP
 		
 		dbconfig.vm.provider "virtualbox" do |vb|
 			vb.name = "clusterdb"
@@ -77,9 +83,26 @@ Vagrant.configure("2") do |config|
 			#vb.gui = true	#enable only for debugging
 		end			
 		
-	dbconfig.vm.provision "shell", path: "./scripts/provision_update.sh"	
-	dbconfig.vm.provision "shell", path: "./scripts/provision_mysql.sh"
+	#dbconfig.vm.provision "shell", path: "./scripts/provision_update.sh"	
+	#dbconfig.vm.provision "shell", path: "./scripts/provision_mysql.sh"
 	
-	end		
+	end	
+	
+	config.vm.define "lb" do |lbconfig|
+		lbconfig.vm.box = BOX_NAME
+	 
+
+		if PROXY_ENABLE == true
+			lbconfig.vm.post_up_message = "setting proxy config"
+			lbconfig.proxy.http     = PROXY_HTTP
+			lbconfig.proxy.https    = PROXY_HTTPS
+			lbconfig.proxy.no_proxy = PROXY_EXCLUDE 
+		end
+	
+		lbconfig.vm.network :hostonly, LB_IP
+		
+	lbconfig.vm.provision "shell", path: "./scripts/provision_loadbalancer.sh"	
+	
+	end
 
 end
