@@ -1,0 +1,79 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do |config|
+  PROXY_ENABLE		= true
+  PROXY_HTTP		= "http://10.0.2.2:5865"
+  PROXY_HTTPS		= "http://10.0.2.2:5865"
+  PROXY_EXCLUDE 	= "localhost,127.0.0.1"
+  BOX_NAME			= "ubuntu/jammy64"
+
+  
+  if not Vagrant.has_plugin?("vagrant-proxyconf")
+	PROXY_ENABLE == false
+	config.vm.post_up_message = "Proxy config plugin not present, proxy instructions will be ignored"
+	config.vm.post_up_message = "Install plugin with command: vagrant plugin install vagrant-proxyconf"
+  end 
+  
+	config.vm.define "web1" do |web1config|
+		web1config.vm.box = BOX_NAME
+	 
+
+		if PROXY_ENABLE == true
+			web1config.vm.post_up_message = "setting proxy config"
+			web1config.proxy.http     = PROXY_HTTP
+			web1config.proxy.https    = PROXY_HTTPS
+			web1config.proxy.no_proxy = PROXY_EXCLUDE 
+		end
+		
+	web1config.vm.provision "shell", path: "./scripts/provision_update.sh"	
+	web1config.vm.provision "shell", path: "./scripts/provision_apache.sh"
+	web1config.vm.provision "shell", path: "./scripts/provision_php.sh"		
+	
+	end	
+	
+	config.vm.define "web2" do |web2config|
+		web2config.vm.box = BOX_NAME
+	 
+
+		if PROXY_ENABLE == true
+			web2config.vm.post_up_message = "setting proxy config"
+			web2config.proxy.http     = PROXY_HTTP
+			web2config.proxy.https    = PROXY_HTTPS
+			web2config.proxy.no_proxy = PROXY_EXCLUDE 
+		end
+		
+	web2config.vm.provision "shell", path: "./scripts/provision_update.sh"	
+	web2config.vm.provision "shell", path: "./scripts/provision_apache.sh"
+	web2config.vm.provision "shell", path: "./scripts/provision_php.sh"		
+	
+	end		
+	
+	config.vm.define "db" do |dbconfig|
+		dbconfig.vm.box = BOX_NAME
+	 
+
+		if PROXY_ENABLE == true
+			dbconfig.vm.post_up_message = "setting proxy config"
+			dbconfig.proxy.http     = PROXY_HTTP
+			dbconfig.proxy.https    = PROXY_HTTPS
+			dbconfig.proxy.no_proxy = PROXY_EXCLUDE 
+		end
+		
+		#dbconfig.vm.hostname = "clusterdb.cpt.local"
+		#dbconfig.vm.network "private_network", ip: "#{BASE_NETWORK}.15", virtualbox__intnet: true
+		
+		dbconfig.vm.provider "virtualbox" do |vb|
+			vb.name = "clusterdb"
+			vb.memory = "1024"
+			vb.cpus = 1
+			#vb.gui = true	#enable only for debugging
+		end			
+		
+	dbconfig.vm.provision "shell", path: "./scripts/provision_update.sh"	
+	dbconfig.vm.provision "shell", path: "./scripts/provision_mysql.sh"
+	
+	end		
+
+end
