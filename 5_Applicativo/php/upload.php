@@ -1,16 +1,16 @@
 <?php
-readfile("./html/videoprocessing.html");
+
 $ds = DIRECTORY_SEPARATOR;  
 
-$storeFolder = 'uploads';
+$storeFolder = '..' . $ds . 'uploads';
 
 if (!empty($_FILES)) {
-    
+    echo "hello";
     $tempFile = $_FILES['file']['tmp_name'];         
       
     $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;
      
-    $targetFile =  $targetPath. $_FILES['file']['name'];
+    $targetFile =  $targetPath . $_FILES['file']['name'];
  
     move_uploaded_file($tempFile,$targetFile);
 
@@ -37,4 +37,4 @@ function check(){
     }
     return true;
 }
-?>
+?>   
