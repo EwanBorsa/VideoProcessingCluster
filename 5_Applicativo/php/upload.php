@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/upload.css">
-    <link href="../css/dropzone.css" type="text/css" rel="stylesheet" />
-    <script src="../js/dropzone.js"></script>
-</head>
+	<title>Video Processing Cluster</title>
 
+	<meta charset= "UTF-8">
+	<meta name= "description" content= "Questa è la upload page del progetto Video Proccessing Cluster">
+	<meta name= "keywords" content= "upload, video, proccessing, cluster.">
+	<meta name= "author" content= "ewan.borsa; matteo.ruedi; alessandro.castelli.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="shortcut icon" type="image/x-icon" href="../images/upload.ico">
+	<link rel="stylesheet" href="../css/upload.css">
+	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    
+	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+</head>
 <body style="text-align: center;">
 <form action="./videoprocessing.php" id="uploadform" class="dropzone" method="get">
     <h1>Video Processing Cluster</h1><br>

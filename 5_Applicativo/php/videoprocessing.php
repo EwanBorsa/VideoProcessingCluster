@@ -1,85 +1,87 @@
-<?php 
-print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>");
-?>
 <!DOCTYPE html>
 <html>
     <head>
+    <title>Video Processing Cluster</title>
+
+    <meta charset= "UTF-8">
+    <meta name= "description" content= "Questa è la download page del progetto Video Proccessing Cluster">
+    <meta name= "keywords" content= "download, video, proccessing, cluster.">
+    <meta name= "author" content= "ewan.borsa; matteo.ruedi; alessandro.castelli.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/processing.ico">
     <link rel="stylesheet" href="../css/processingVideo.css">
     </head>
-    <body>
-        <h1 >Video Processing Cluster</h1>
-        <div class="divVideo">
-            <video controls class="video">
-                <!--<source src="video.mp4" type="video/mp4">-->
-            </video>
-        </div>
-        <div class="divButton">
-            <button id="button1">Scarica video con i motion vector</button>
-            <br>
-            <br>
-            <br>
-            <button id="button2">Scarica video con i frame selezionati</button>
-            <br>
-            <br>
-            <!--<select id="framesVideo" name="framesVideo">
-                <option value="I">I</option>
-                <option value="B">B</option>
-                <option value="P">P</option>
-            </select>-->
-            <form class="check1">
-                <input type="checkbox" id="framesVideoI" name="framesVideoI" value="I">
-                <label for="vehicle1"> I </label>
-                <input type="checkbox" id="framesVideoB" name="framesVideoB" value="B">
-                <label for="vehicle2"> B </label>
-                <input type="checkbox" id="framesVideoP" name="framesVideoP" value="P">
-                <label for="vehicle3"> P </label>
-            </form>
-            <br>
-            <br>
-            <button id="button2">Scarica i frame selezionati</button>
-            <br>
-            <br>
-            <form class="check2">
-                <input type="checkbox" id="framesI" name="framesI" value="I">
-                <label for="vehicle1"> I </label>
-                <input type="checkbox" id="framesB" name="framesVideoB" value="B">
-                <label for="vehicle2"> B </label>
-                <input type="checkbox" id="framesP" name="framesP" value="P">
-                <label for="vehicle3"> P </label>
-            </form>
-        </div>
-        <h3>Statistica dei frame del video</h3>
-        <div class="divTable">
-            <table>
-                <tr>
-                    <th>I frame</th>
-                    <th>B Frame</th>
-                    <th>P Frame</th>
-                </tr>
-                <tr>
-                    <td>0 - 0%</td>
-                    <td>0 - 0%</td>
-                    <td>0 - 0%</td>
-                </tr>
-            </table>
-        </div>  
-        <h3>Grafico dei frame del video</h3>
-
-
-    </body>
+<body>
+    <?php print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); ?>
+    <h1 >Video Processing Cluster</h1>
+    <div class="divVideo">
+        <video controls class="video">
+            <!--<source src="video.mp4" type="video/mp4">-->
+        </video>
+    </div>
+    <div class="divButton">
+        <button id="button1">Scarica video con i motion vector</button>
+        <br>
+        <br>
+        <br>
+        <button id="button2">Scarica video con i frame selezionati</button>
+        <br>
+        <br>
+        <!--<select id="framesVideo" name="framesVideo">
+            <option value="I">I</option>
+            <option value="B">B</option>
+            <option value="P">P</option>
+        </select>-->
+        <form class="check1">
+            <input type="checkbox" id="framesVideoI" name="framesVideoI" value="I">
+            <label for="vehicle1"> I </label>
+            <input type="checkbox" id="framesVideoB" name="framesVideoB" value="B">
+            <label for="vehicle2"> B </label>
+            <input type="checkbox" id="framesVideoP" name="framesVideoP" value="P">
+            <label for="vehicle3"> P </label>
+        </form>
+        <br>
+        <br>
+        <button id="button2">Scarica i frame selezionati</button>
+        <br>
+        <br>
+        <form class="check2">
+            <input type="checkbox" id="framesI" name="framesI" value="I">
+            <label for="vehicle1"> I </label>
+            <input type="checkbox" id="framesB" name="framesVideoB" value="B">
+            <label for="vehicle2"> B </label>
+            <input type="checkbox" id="framesP" name="framesP" value="P">
+            <label for="vehicle3"> P </label>
+        </form>
+    </div>
+    <h3>Statistica dei frame del video</h3>
+    <div class="divTable">
+        <table>
+            <tr>
+                <th>I frame</th>
+                <th>B Frame</th>
+                <th>P Frame</th>
+            </tr>
+            <tr>
+                <td>0 - 0%</td>
+                <td>0 - 0%</td>
+                <td>0 - 0%</td>
+            </tr>
+        </table>
+    </div>  
+    <h3>Grafico dei frame del video</h3>
+</body>
 </html>
 
 <?php
 _log("debug", "upload.php file opened");
 uploadFile();
-echo "<script type='text/javascript'> 
-                window.onload=function(){
-                    document.forms['uploadform'].submit();
-                }
-       </script>";
+
 
 function uploadFile(){
     if (!empty($_FILES)) {//se ci sono files...
+        $id = random_int(100000000, 999999999);
         $ds = DIRECTORY_SEPARATOR;
         $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
         $tempFile = $_FILES['file']['tmp_name'];  
