@@ -36,7 +36,8 @@ Vagrant.configure("2") do |config|
 	web1config.vm.provision "shell", path: "./scripts/provision_update.sh"	
 	web1config.vm.provision "shell", path: "./scripts/provision_apache.sh"
 	web1config.vm.provision "shell", path: "./scripts/provision_php.sh"
-	web1config.vm.provision "shell", path: "./scripts/provision_ffmpeg.sh"		
+	web1config.vm.provision "shell", path: "./scripts/provision_ffmpeg.sh"	
+	web1config.vm.synced_folder "./www/", "/var/www/html"	
 	
 	end	
 	
