@@ -39,6 +39,27 @@ body{
 	margin: auto;
 }
 
+.rect-id {
+	width: 50%;
+	padding: 20px;
+	background: #ffffff;
+	color: #000000;
+	border-color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	line-height: 1.3;
+	text-align: center;
+	margin: auto;
+}
+
+.session-id {
+	font-family: "Helvetica";
+	font-size: 13px;
+	width: 50%;
+	line-height: 1.3;
+	text-align: center;;
+}
+
 .progress-bar {
 	padding: 1px;
 	border-width: 1px;

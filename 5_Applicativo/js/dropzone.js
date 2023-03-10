@@ -173,7 +173,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          * Can be changed to `"put"` if necessary. You can also provide a function
          * that will be called with `files` and must return the method (since `v3.12.0`).
          */
-        method: "post",
+        method: "get",
 
         /**
          * Will be set on the XHRequest.
@@ -240,7 +240,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
          * the event `maxfilesexceeded` will be called. The dropzone element gets the
          * class `dz-max-files-reached` accordingly so you can provide visual feedback.
          */
-        maxFilesize: 256,
+        maxFilesize: 1,
 
         /**
          * The name of the file param that gets transferred.
@@ -319,7 +319,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         /**
          * Can be used to limit the maximum number of files that will be handled by this Dropzone
          */
-        maxFiles: null,
+        maxFiles: 1,
 
         /**
          * An optional object to send additional headers to the server. Eg:
