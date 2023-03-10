@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
   
 	config.vm.define "web1" do |web1config|
 		web1config.vm.box = BOX_NAME
-	 
+		web1config.vm.network :hostonly, WEB1_IP
 
 		if PROXY_ENABLE == true
 			web1config.vm.post_up_message = "setting proxy config"
@@ -31,19 +31,19 @@ Vagrant.configure("2") do |config|
 			web1config.proxy.no_proxy = PROXY_EXCLUDE 
 		end
 	
-		web1config.vm.network :hostonly, WEB1_IP
 		
-	web1config.vm.provision "shell", path: "./scripts/provision_update.sh"	
-	web1config.vm.provision "shell", path: "./scripts/provision_apache.sh"
-	web1config.vm.provision "shell", path: "./scripts/provision_php.sh"
-	web1config.vm.provision "shell", path: "./scripts/provision_ffmpeg.sh"	
-	web1config.vm.synced_folder "./www/", "/var/www/html"	
+		
+		web1config.vm.provision "shell", path: "./scripts/provision_update.sh"	
+		web1config.vm.provision "shell", path: "./scripts/provision_apache.sh"
+		web1config.vm.provision "shell", path: "./scripts/provision_php.sh"
+		web1config.vm.provision "shell", path: "./scripts/provision_ffmpeg.sh"	
+		web1config.vm.synced_folder "./www/", "/var/www/html"	
 	
 	end	
 	
 	config.vm.define "web2" do |web2config|
 		web2config.vm.box = BOX_NAME
-	 
+		web2config.vm.network :hostonly, WEB2_IP
 
 		if PROXY_ENABLE == true
 			web2config.vm.post_up_message = "setting proxy config"
@@ -52,12 +52,13 @@ Vagrant.configure("2") do |config|
 			web2config.proxy.no_proxy = PROXY_EXCLUDE 
 		end
 
-		web2config.vm.network :hostonly, WEB2_IP
 		
-	web2config.vm.provision "shell", path: "./scripts/provision_update.sh"	
-	web2config.vm.provision "shell", path: "./scripts/provision_apache.sh"
-	web2config.vm.provision "shell", path: "./scripts/provision_php.sh"
-	web2config.vm.provision "shell", path: "./scripts/provision_ffmpeg.sh"		
+		
+		web2config.vm.provision "shell", path: "./scripts/provision_update.sh"	
+		web2config.vm.provision "shell", path: "./scripts/provision_apache.sh"
+		web2config.vm.provision "shell", path: "./scripts/provision_php.sh"
+		web2config.vm.provision "shell", path: "./scripts/provision_ffmpeg.sh"
+		web2config.vm.synced_folder "./www/", "/var/www/html"	
 	
 	end		
 	
