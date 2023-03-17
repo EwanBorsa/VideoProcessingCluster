@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" type="image/x-icon" href="../images/processing.ico">
+    <link rel="stylesheet" href="../css/basic.css">
     <link rel="stylesheet" href="../css/processingVideo.css">
     </head>
 <body>
@@ -17,7 +18,8 @@
     if(isset($_GET["session_id"])){
         $_GET["session_id"] = random_int(100000000, 999999999);
     }
-    print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); ?>
+    print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); 
+    ?>
     <h1 >Video Processing Cluster</h1>
     <div class="divVideo">
         <video controls class="video">
@@ -25,18 +27,10 @@
         </video>
     </div>
     <div class="divButton">
-        <button id="button1">Scarica video con i motion vector</button>
-        <br>
-        <br>
-        <br>
-        <button id="button2">Scarica video con i frame selezionati</button>
-        <br>
-        <br>
-        <!--<select id="framesVideo" name="framesVideo">
-            <option value="I">I</option>
-            <option value="B">B</option>
-            <option value="P">P</option>
-        </select>-->
+        <button id="bMotionVector">Scarica video con i motion vector</button><br><br><br>
+        
+        <button id="bVideoFrames">Scarica video con i frame selezionati</button><br><br>
+        
         <form class="videoFrames">
             <input type="checkbox" id="framesVideoI" name="framesVideoI" value="I">
             <label for="framesVideoI"> I </label>
@@ -44,12 +38,10 @@
             <label for="framesVideoB"> B </label>
             <input type="checkbox" id="framesVideoP" name="framesVideoP" value="P">
             <label for="framesVideoP"> P </label>
-        </form>
-        <br>
-        <br>
-        <button id="button2">Scarica i frame selezionati</button>
-        <br>
-        <br>
+        </form><br><br>
+
+        <button id="bFrames">Scarica i frame selezionati</button> <br><br>
+        
         <form class="frames">
             <input type="checkbox" id="framesI" name="framesI" value="I">
             <label for="framesI"> I </label>
@@ -60,7 +52,7 @@
         </form>
     </div>
     <h3>Statistica dei frame del video</h3>
-    <div class="divTable">
+    <div class="framePercTable">
         <table>
             <tr>
                 <th>I frame</th>
