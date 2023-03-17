@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
   
 	config.vm.define "web1" do |web1config|
 		web1config.vm.box = BOX_NAME
-		web1config.vm.network :hostonly, WEB1_IP
+		web1config.vm.network :private_network, ip: WEB1_IP
 
 		if PROXY_ENABLE == true
 			web1config.vm.post_up_message = "setting proxy config"
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
 	
 	config.vm.define "web2" do |web2config|
 		web2config.vm.box = BOX_NAME
-		web2config.vm.network :hostonly, WEB2_IP
+		web2config.vm.network :private_network, ip: WEB2_IP
 
 		if PROXY_ENABLE == true
 			web2config.vm.post_up_message = "setting proxy config"
@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
 		#dbconfig.vm.hostname = "clusterdb.cpt.local"
 		#dbconfig.vm.network "private_network", ip: "#{BASE_NETWORK}.15", virtualbox__intnet: true
 
-		dbconfig.vm.network :hostonly, DB_IP
+		dbconfig.vm.network :private_network, ip: DB_IP
 		
 		dbconfig.vm.provider "virtualbox" do |vb|
 			vb.name = "clusterdb"
@@ -101,7 +101,7 @@ Vagrant.configure("2") do |config|
 			lbconfig.proxy.no_proxy = PROXY_EXCLUDE 
 		end
 	
-		lbconfig.vm.network :hostonly, LB_IP
+		lbconfig.vm.network :private_network, ip: LB_IP
 		
 	lbconfig.vm.provision "shell", path: "./scripts/provision_loadbalancer.sh"	
 	
