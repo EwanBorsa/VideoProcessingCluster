@@ -15,5 +15,7 @@ INSERT INTO formats(name, extension, magic_number) VALUES("Flash video file", "f
 INSERT INTO formats(name, extension, magic_number) VALUES("Flash MP4 Video File", "f4v", "66 74 79 70 66 34 76 20");
 INSERT INTO formats(name, extension, magic_number) VALUES("WebM video file", "wepb", "1A 45 DF A3");
 INSERT INTO formats(name, extension, magic_number) VALUES("MPEG-4 Video", "m4v", "66 74 79 70 4D 34 56 20");
-INSERT INTO formats(name, extension, magic_number) VALUES("Shockwave Flash", "swf", "43 57 53");
+INSERT INTO formats(name, extension, magic_number) VALUES("Shockwave Flash CWS", "swf", "43 57 53");
+INSERT INTO formats(name, extension, magic_number) VALUES("Shockwave Flash FWS", "swf", "46 57 53");
+INSERT INTO formats(name, extension, magic_number) VALUES("ISO Base Media(MPEG-4)", "mp4", "66 74 79 70 69 73 6F 6D");
 INSERT INTO formats(name, extension, magic_number) VALUES("MPEG-4", "mp4", "66 74 79 70");
