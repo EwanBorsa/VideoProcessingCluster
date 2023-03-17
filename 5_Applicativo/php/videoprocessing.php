@@ -13,7 +13,11 @@
     <link rel="stylesheet" href="../css/processingVideo.css">
     </head>
 <body>
-    <?php print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); ?>
+    <?php 
+    if(isset($_GET["session_id"])){
+        $_GET["session_id"] = random_int(100000000, 999999999);
+    }
+    print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); ?>
     <h1 >Video Processing Cluster</h1>
     <div class="divVideo">
         <video controls class="video">
@@ -33,26 +37,26 @@
             <option value="B">B</option>
             <option value="P">P</option>
         </select>-->
-        <form class="check1">
+        <form class="videoFrames">
             <input type="checkbox" id="framesVideoI" name="framesVideoI" value="I">
-            <label for="vehicle1"> I </label>
+            <label for="framesVideoI"> I </label>
             <input type="checkbox" id="framesVideoB" name="framesVideoB" value="B">
-            <label for="vehicle2"> B </label>
+            <label for="framesVideoB"> B </label>
             <input type="checkbox" id="framesVideoP" name="framesVideoP" value="P">
-            <label for="vehicle3"> P </label>
+            <label for="framesVideoP"> P </label>
         </form>
         <br>
         <br>
         <button id="button2">Scarica i frame selezionati</button>
         <br>
         <br>
-        <form class="check2">
+        <form class="frames">
             <input type="checkbox" id="framesI" name="framesI" value="I">
-            <label for="vehicle1"> I </label>
+            <label for="framesI"> I </label>
             <input type="checkbox" id="framesB" name="framesVideoB" value="B">
-            <label for="vehicle2"> B </label>
+            <label for="framesB"> B </label>
             <input type="checkbox" id="framesP" name="framesP" value="P">
-            <label for="vehicle3"> P </label>
+            <label for="framesP"> P </label>
         </form>
     </div>
     <h3>Statistica dei frame del video</h3>
@@ -81,7 +85,6 @@ uploadFile();
 
 function uploadFile(){
     if (!empty($_FILES)) {//se ci sono files...
-        $id = random_int(100000000, 999999999);
         $ds = DIRECTORY_SEPARATOR;
         $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
         $tempFile = $_FILES['file']['tmp_name'];  
