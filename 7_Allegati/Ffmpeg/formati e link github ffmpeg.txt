@@ -2,4 +2,10 @@ FFMPEG da github
 git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
 
 Formati:
-avi, mp4, mov, flv, f4v, swf, webm
+avi, 
+mp4, 
+mov, 
+flv, 
+f4v, 
+swf, 
+webm.
