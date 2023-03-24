@@ -1,0 +1,116 @@
+Fonte utile di video: https://filesamples.com/
+
+Creare un video usando solo i frames i/p/b del video originale
+--------------------------------------------------------------
+ffmpeg -i <inputfile> -vf "select='eq(pict_type\,B)',showinfo" <outfile>
+ffmpeg -i <inputfile> -vf "select='eq(pict_type\,P)',showinfo" <outfile>
+ffmpeg -i <inputfile> -vf "select='eq(pict_type\,I)',showinfo" <outfile>
+
+pict_type
+I,P,B,S,SI,SP,BI
+
+esempi:
+ffmpeg -i sample_640x360.m2v -vf "select='eq(pict_type\,I)',showinfo" sample_640x360_output_if.m2v
+ffmpeg -i sample_640x360.m2v -vf "select='eq(pict_type\,P)',showinfo" sample_640x360_output_pf.m2v
+ffmpeg -i sample_640x360.m2v -vf "select='eq(pict_type\,B)',showinfo" sample_640x360_output_sf.m2v
+
+
+Salvataggio frames in mosaico
+-----------------------------
+esempi:
+ffmpeg -i sample_640x360.m2v -vf "select='eq(pict_type\,I)',showinfo,scale=160:120,tile" -frames:v 1 sample_640x360.m2v_output_if_mosaic.png
+ffmpeg -i sample_640x360.m4v -vf "select='eq(pict_type\,I)',showinfo,scale=160:120,tile" -frames:v 1 sample_640x360.m4v_output_if_mosaic.png
+
+se le immagini sono troppe e in un mosaico non ci stanno
+ffmpeg -i sample_640x360.m2v -vf "select='eq(pict_type\,P)',showinfo,scale=160:120,tile" sample_640x360.m2v_output_pf_mosaic_%03d.png
+
+Video con rappresentazione dei motion vectors
+---------------------------------------------
+ffmpeg -flags2 +export_mvs -i sample_1920x1080.mp4 -vf codecview=mv=pf+bf+bb sample_1920x1080_output_mv.mp4
+ffmpeg -flags2 +export_mvs -i sample_640x360.m2v -vf codecview=mv=pf+bf+bb sample_640x360_output_mv.m2v
+	mv - motion vector
+    pf – forward predicted motion vectors of P pictures
+    bf – forward predicted motion vectors of B pictures
+    bb – backward predicted motion vectors of B pictures 
+
+Analisi di uno spezzone: -ss 00:00:05 -to 00:00:10
+ffmpeg -flags2 +export_mvs -i Drifting_with_Cars.mp4 -vf "codecview='mv=pf+bf+bb'" -ss 00:00:05 -to 00:00:10 Drifting_with_Cars_mv.mp4
+
+Play invece di out su file:
+ffplay -flags2 +export_mvs sample_1920x1080.mp4 -vf codecview=mv=pf+bf+bb
+ffplay -flags2 +export_mvs Drifting_with_Cars.mp4 -vf "codecview='mv=pf+bf+bb'"
+ffplay -flags2 +export_mvs Drifting_with_Cars.mp4 -vf "codecview='mv=pf+bf+bb', codecview='qp=true'"
+ffplay -flags2 +export_mvs Drifting_with_Cars.mp4 -vf "codecview='qp=true'"  -skip_frame nointra
+ffplay -flags2 +export_mvs Drifting_with_Cars.mp4 -vf "codecview='qp=true'"  -skip_frame noref
+
+
+Estrazione scene
+----------------
+scene: 0.3 -> quando il numero di modifiche supera il 30% cambia scena
+ffmpeg -i Drifting_with_Cars.mp4 -vf  "select=gt(scene\,0.3), scale=640:360" -vsync vfr Drifting_with_Cars%03d.png
+
+scene tutte in uno (mosaico)
+ffmpeg -i Drifting_with_Cars.mp4 -vf select='gt(scene\,0.3)',scale=160:120,tile -frames:v 1 Drifting_with_Cars_tiles.png
+
+
+Estrazione info
+-------------------
+ffprobe -v error -select_streams v:0 -show_frames Drifting_with_Cars.mp4
+ffprobe -v error -select_streams v:0 -show_frames Drifting_with_Cars.mp4 > Drifting_with_Cars.txt
+
+
+ffstats_converter.exe Drifting_with_Cars.txt
+produce un csv
+
+il csv è comodo per analizzare i dati e determinare:
+- la quantità e percentuale di I/B/P frames
+- timestamp del GOP più piccolo (in bytes)
+- timestamp del GOP più grane (in bytes), se ce ne sono di più elencarli tutti
+
+Altri comandi
+-------------
+
+get file info:
+ffmpeg -i video.avi
+
+convert images to video:
+ffmpeg -f image2 -i image%d.jpg video.mpg
+
+convert video to images:
+ffmpeg -i video.mpg image%d.jpg
+
+resize video:
+ffmpeg -i input.avi -vf scale=320:240 output.avi
+
+resize image:
+ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
+
+extract audio from video and save as mp3:
+ffmpeg -i source_video.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 sound.mp3
+
+convert video format:
+ffmpeg -i original_video.avi final_video.mpg
+
+convert avi to dvd format:
+ffmpeg -i source_video.avi -target pal-dvd -ps 2000000000 -aspect 16:9 final_video.mpeg
+    target pal-dvd : Output format
+    -ps 2000000000: Maximum size for the output file, in bits (here, 2 Gb)
+    -aspect 16:9: Widescreen
+
+convert theora video to mpeg dvd:
+ffmpeg -i input.ogm -s 720x576 -vcodec mpeg2video -acodec mp3 output.mpg
+	-vcodec for video
+	-acodec for audio
+	
+convert avi to gif:
+ffmpeg -i original_video.avi animated_gif.gif
+
+mix audio and video:
+ffmpeg -i sound.wav -i original_video.avi final_video.mpg
+
+add image overlay to video:
+ffmpeg -i input.mp4 -i image.png -filter_complex "[0:v][1:v] overlay=25:25:enable='between(t,0,20)'" -pix_fmt yuv420p -c:a copy output.mp4
+    overlay=25:25: The image will be positioned 25px to the right and 25px down, originating from the top left corner (0:0).
+    enable='between(t,0,20)': The overlay image will be shown from 00:00:00 to 00:00:20
+
+

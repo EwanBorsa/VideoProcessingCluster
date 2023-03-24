@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"F:/Scuola/3.2/Progetti/VideoProcessingCluster/5_Applicativo/progetto_vagrant_test/www","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"F:/Scuola/3.2/Progetti/VideoProcessingCluster/5_Applicativo/progetto_vagrant_test","disabled":false,"__vagrantfile":true}}}
