@@ -1,5 +1,17 @@
-#Rewrite URL's
+#Opzione per vedere tutte le estensioni.
+Options -MultiViews
+
+#Opzione per poter modificare l'url.
 RewriteEngine On
+
+#Opzione serve a bloccare la navigazione tra cartelle.
+Options -Indexes
+
+#Queste 3 condizioni servono a modificare la regola se non esiste il valore.
+RewriteCond %{REQUEST_FILENAME} !-d #directory
+RewriteCond %{REQUEST_FILENAME} !-f #file
+RewriteCond %{REQUEST_FILENAME} !-l #link
+
 RewriteRule ^error/?$ php/error.php [NC]
 
 # Enable Error Documents
