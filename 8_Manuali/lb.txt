@@ -1,0 +1,8 @@
+## Get process
+ps -fA | grep py
+
+## Kill process
+kill [number]
+
+## Background process
+./cpuvalue.py &
