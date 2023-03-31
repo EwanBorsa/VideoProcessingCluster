@@ -1,4 +1,1 @@
-inputfile=$1
-outputfile=$2
-
-ffmpeg -flags2 +export_mvs -i inputfile -vf codecview=mv=pf+bf+bb outputfile
+ffmpeg -flags2 +export_mvs -i $1 -vf codecview=mv=pf+bf+bb $2

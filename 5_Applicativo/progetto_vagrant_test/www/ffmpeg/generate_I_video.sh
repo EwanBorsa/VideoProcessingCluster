@@ -1,4 +1,1 @@
-inputfile=$1
-outputfile=$2
-
-ffmpeg -i inputfile -vf "select='eq(pict_type\,I)',showinfo" outputfile
+ffmpeg -i $1 -vf "select='eq(pict_type\,I)',showinfo" $2

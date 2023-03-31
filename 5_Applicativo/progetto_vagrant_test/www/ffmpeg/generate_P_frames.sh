@@ -1,4 +1,1 @@
-inputfile=$1
-outputfile=$2
-
-ffmpeg -i inputfile -vf "select='eq(pict_type,P)'" -vsync vfr outputfile/Pframe-%.jpeg
+ffmpeg -i $1 -vf "select='eq(pict_type,P)'" -vsync vfr $2/Pframe-%.jpeg
