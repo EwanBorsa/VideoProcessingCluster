@@ -85,6 +85,8 @@ function uploadFile(){
         }
         $targetPath = dirname( __FILE__ ) . $storeFolder . $_GET["session_id"] . $ds;
         $targetFile =  $targetPath . $_FILES['file']['name'];
+        $directory = $_GET["session_id"];
+        shell_exec("../ffmpeg/create_directory $directory");
         move_uploaded_file($tempFile,$targetFile);
     }
 }
