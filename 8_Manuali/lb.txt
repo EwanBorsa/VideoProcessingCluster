@@ -6,3 +6,7 @@ kill [number]
 
 ## Background process
 ./cpuvalue.py &
+
+pip install psutil
+pip install thread
+pip install socket
