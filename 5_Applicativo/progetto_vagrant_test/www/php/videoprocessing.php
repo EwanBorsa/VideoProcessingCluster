@@ -15,7 +15,7 @@
     </head>
 <body>
     <?php 
-    if(isset($_GET["session_id"])){
+    if(!isset($_GET["session_id"]) or empty($_GET["session_id"])){
         $_GET["session_id"] = random_int(100000000, 999999999);
     }
     print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); 
@@ -76,6 +76,8 @@ uploadFile();
 
 
 function uploadFile(){
+    $directory = $_GET["session_id"];
+    shell_exec("../ffmpeg/create_directory.sh $directory");
     if (!empty($_FILES)) {//se ci sono files...
         $ds = DIRECTORY_SEPARATOR;
         $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
@@ -85,8 +87,6 @@ function uploadFile(){
         }
         $targetPath = dirname( __FILE__ ) . $storeFolder . $_GET["session_id"] . $ds;
         $targetFile =  $targetPath . $_FILES['file']['name'];
-        $directory = $_GET["session_id"];
-        shell_exec("../ffmpeg/create_directory $directory");
         move_uploaded_file($tempFile,$targetFile);
     }
 }
