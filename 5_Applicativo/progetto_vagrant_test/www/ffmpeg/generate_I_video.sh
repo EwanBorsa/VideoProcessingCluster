@@ -1,0 +1,1 @@
+ffmpeg -i $1 -vf "select='eq(pict_type\,I)',showinfo" $2
