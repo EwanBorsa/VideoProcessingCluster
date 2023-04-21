@@ -15,9 +15,6 @@
     </head>
 <body>
     <?php 
-    if(!isset($_GET["session_id"]) or empty($_GET["session_id"])){
-        $_GET["session_id"] = random_int(100000000, 999999999);
-    }
     print_r("<div style='text-align: center'>Id Sessione:" . $_GET["session_id"] . "</div>"); 
     ?>
     <h1 >Video Processing Cluster</h1>
@@ -72,24 +69,15 @@
 
 <?php
 _log("debug", "upload.php file opened");
-uploadFile();
 
-
-function uploadFile(){
-    $directory = $_GET["session_id"];
-    shell_exec("../ffmpeg/create_directory.sh $directory");
-    if (!empty($_FILES)) {//se ci sono files...
+    /*if (!empty($_FILES)) {//se ci sono files...
         $ds = DIRECTORY_SEPARATOR;
         $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
-        $tempFile = $_FILES['file']['tmp_name'];  
-        if(check($tempFile)){
-    
-        }
+        $tempFile = $_FILES['file']['tmp_name'];
         $targetPath = dirname( __FILE__ ) . $storeFolder . $_GET["session_id"] . $ds;
         $targetFile =  $targetPath . $_FILES['file']['name'];
         move_uploaded_file($tempFile,$targetFile);
-    }
-}
+    }*/
 function _log($type, $text) {
 	$ds = DIRECTORY_SEPARATOR;
 	$path = dirname( __FILE__ ) . $ds . ".." . $ds . "logs" . $ds;
@@ -114,23 +102,5 @@ function _log($type, $text) {
 			break;
 	}
 	closelog();
-}
-function check($files){
-    // Check if file already exists
-    if (file_exists($file)) {
-        echo "Sorry, file already exists(upload a new file).";
-        return false;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large(max: 500MB).";
-        return false;
-    }
-    // Allow certain file formats
-    if($fileType != "") {
-        echo "Sorry, only videos files are allowed(see formats list).";
-        return false;
-    }
-    return true;
 }
 ?>

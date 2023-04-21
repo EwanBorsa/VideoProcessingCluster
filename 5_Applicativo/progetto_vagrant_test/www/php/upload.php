@@ -17,7 +17,7 @@
 	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 </head>
 <body>
-<form action="./videoprocessing.php" id="uploadform" class="dropzone" method="get">
+<form action="./videoprocessing.php" id="uploadform" class="dropzone" method="post">
     <h1>Video Processing Cluster</h1><br>
 	<div class="rect-upload">
 		<img src="../images/upload.png" alt="UPLOAD_VIDEO_PNG" width="100" style="margin:10px"></img>
@@ -34,12 +34,20 @@
 		<input type="number" name="session_id" class="session-id"></input>
 	</div>	
 </form>
+<form method="post" action="generate.php" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="upload" />
+            <label>Carica il tuo file:</label>
+            <input type="file" name="user_file" />
+            <br />
+            <input type="submit" value="Carica online" />
+        </form>
 </body> 
 </html>
 
 
 <?php
 _log("debug", "upload.php file opened");
+
 function _log($type, $text) {
 	$ds = DIRECTORY_SEPARATOR;
 	$path = dirname( __FILE__ ) . $ds . ".." . $ds . "logs" . $ds;
