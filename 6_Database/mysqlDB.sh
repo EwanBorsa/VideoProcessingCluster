@@ -1,5 +1,13 @@
 !/bin/bash
-
+sudo apt update
+sudo apt install mysql-server -y
+sudo mysql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'roottest';
+exit
+sudo mysql_secure_installation -p
+mysql -u root -p 'roottest'
+ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
+exit
 sudo mysql
 CREATE DATABASE vpc;
 USE vpc;
