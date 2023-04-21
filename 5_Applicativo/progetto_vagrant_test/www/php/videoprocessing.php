@@ -8,7 +8,6 @@
     <meta name= "keywords" content= "download, video, proccessing, cluster.">
     <meta name= "author" content= "ewan.borsa; matteo.ruedi; alessandro.castelli.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="shortcut icon" type="image/x-icon" href="../images/processing.ico">
     <link rel="stylesheet" href="../css/basic.css">
     <link rel="stylesheet" href="../css/processingVideo.css">
@@ -114,23 +113,5 @@ function _log($type, $text) {
 			break;
 	}
 	closelog();
-}
-function check($files){
-    // Check if file already exists
-    if (file_exists($file)) {
-        echo "Sorry, file already exists(upload a new file).";
-        return false;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large(max: 500MB).";
-        return false;
-    }
-    // Allow certain file formats
-    if($fileType != "") {
-        echo "Sorry, only videos files are allowed(see formats list).";
-        return false;
-    }
-    return true;
 }
 ?>
