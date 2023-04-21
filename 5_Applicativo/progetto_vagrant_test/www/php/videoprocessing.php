@@ -8,7 +8,6 @@
     <meta name= "keywords" content= "download, video, proccessing, cluster.">
     <meta name= "author" content= "ewan.borsa; matteo.ruedi; alessandro.castelli.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="shortcut icon" type="image/x-icon" href="../images/processing.ico">
     <link rel="stylesheet" href="../css/basic.css">
     <link rel="stylesheet" href="../css/processingVideo.css">

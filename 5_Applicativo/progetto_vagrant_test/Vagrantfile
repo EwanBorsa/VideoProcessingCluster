@@ -114,11 +114,11 @@ Vagrant.configure("2") do |config|
 			lbconfig.proxy.https    = PROXY_HTTPS
 			lbconfig.proxy.no_proxy = PROXY_EXCLUDE 
 		end
-	
-		lbconfig.vm.network :private_network, ip: LB_IP
 		
-	lbconfig.vm.provision "shell", path: "./scripts/provision_loadbalancer.sh"	
-	
+		lbconfig.vm.network :private_network, ip: LB_IP
+		lbconfig.vm.provision "shell", path: "./scripts/provision_loadbalancer.sh"
+		lbconfig.vm.synced_folder "./haproxy/", "/etc/haproxy"
+			
 	end
 
 end

@@ -7,6 +7,8 @@ kill [number]
 ## Background process
 ./cpuvalue.py &
 
+SET PROXY ENVIRMENT
+
 pip install psutil
 pip install thread
 pip install socket
