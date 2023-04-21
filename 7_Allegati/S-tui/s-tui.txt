@@ -1,0 +1,2 @@
+Come fare il stress test della macchine per il controllo del carico basato sulla cpu
+https://www.tomshardware.com/how-to/stress-test-cpu-in-linux
