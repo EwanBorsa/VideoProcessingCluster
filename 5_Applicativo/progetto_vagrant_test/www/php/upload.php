@@ -17,7 +17,7 @@
 	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 </head>
 <body>
-<form action="./videoprocessing.php" id="uploadform" class="dropzone" method="post">
+<form action="generate.php" id="uploadform" class="dropzone" method="post">
     <h1>Video Processing Cluster</h1><br>
 	<div class="rect-upload">
 		<img src="../images/upload.png" alt="UPLOAD_VIDEO_PNG" width="100" style="margin:10px"></img>

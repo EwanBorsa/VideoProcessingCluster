@@ -7,7 +7,15 @@ function uploadFile(){
     $directory = $_GET["session_id"];
     shell_exec("../ffmpeg/create_directory.sh $directory");
     echo "uploading";
-    if(isset($_POST['action']) and $_POST['action'] == 'upload')
+    if (!empty($_FILES)) {//se ci sono files...
+        $ds = DIRECTORY_SEPARATOR;
+        $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
+        $tempFile = $_FILES['file']['tmp_name'];
+        $targetPath = dirname( __FILE__ ) . $storeFolder . $directory . $ds;
+        $targetFile =  $targetPath . $_FILES['file']['name'];
+        move_uploaded_file($tempFile,$targetFile);
+    }
+    /*if(isset($_POST['action']) and $_POST['action'] == 'upload')
     {
         echo "isset post ok";
         $ds = DIRECTORY_SEPARATOR;
@@ -24,7 +32,7 @@ function uploadFile(){
                 move_uploaded_file($file['tmp_name'], $targetFile);
             }
         }
-    }
+    }*/
 }
 require 'videoprocessing.php';
 ?>
