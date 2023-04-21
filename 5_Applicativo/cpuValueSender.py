@@ -4,7 +4,6 @@ import time
 import psutil
 import socket
 
-<<<<<<< HEAD
 # HOST = '192.168.56.30'  # LoadBalancer IP
 
 PORT = 9999  # Socket Port
@@ -46,11 +45,9 @@ while True:
     time.sleep(0.1)
     print('.', end='')
 
-=======
 # Define the port on which you want to connect
 PORT = 9999
 
-<<<<<<< HEAD
 while True:
     # Create a socket object that send data
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -92,7 +89,6 @@ while True:
     time.sleep(0.1)
 
 
-=======
 # Create a socket object that send data
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # Bind socket to localhost and port 9999
@@ -117,5 +113,3 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 conn.sendall(bytes(ascii("100%\n")))
             time.sleep(1)
     conn.close()
->>>>>>> 6135c36bf8de0bfa62b2b6955c3c2b34e6a56e83
->>>>>>> 998d88735ac64765c9b10aa239b9637add4f14cb
