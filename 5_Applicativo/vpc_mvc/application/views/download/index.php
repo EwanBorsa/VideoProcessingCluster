@@ -38,9 +38,9 @@
             <th>P Frame</th>
         </tr>
         <tr>
-            <td>0 - 0%</td>
-            <td>0 - 0%</td>
-            <td>0 - 0%</td>
+            <td><?php echo $franeIStat?></td>
+            <td><?php echo $franeBStat?></td>
+            <td><?php echo $franePStat?></td>
         </tr>
     </table>
 </div>

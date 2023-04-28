@@ -1,0 +1,1 @@
+ffmpeg -i $1 -vf "select='eq(pict_type,B)'" -vsync vfr $2/Bframe-%.jpeg
