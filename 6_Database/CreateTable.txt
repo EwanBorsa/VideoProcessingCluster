@@ -1,6 +1,6 @@
 use vpc;
 CREATE TABLE videoSessionPath
 (
-	sessionId int primary key,
+	sessionId CHAR(32) primary key,
 	sessionPath VARCHAR(100)
 );

@@ -20,7 +20,7 @@ GRANT ALL ON vpc.* TO 'vpcAdmin'@'192.168.56.20';
 
 CREATE TABLE videoSessionPath
 (
-	sessionId int primary key,
+	sessionId CHAR(32) primary key,
 	sessionPath VARCHAR(100)
 );
 
