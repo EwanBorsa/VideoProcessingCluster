@@ -1,5 +1,5 @@
 <h1>Upload</h1>
-<form action="<?php echo URL?>\home\" id="uploadform" class="dropzone" method="get">
+<form action="<?php echo URL?>\home\upload\" id="uploadform" class="dropzone" method="get">
     <br>
     <div id="uploadCenter" class="rect-upload">
         <img src="application\views\_assets\upload.png" alt="ERR_UPLOAD_VIDEO_PNG" width="100px" style="margin:10px">
