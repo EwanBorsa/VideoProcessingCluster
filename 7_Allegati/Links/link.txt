@@ -2,3 +2,4 @@ https://docs.python.org/3/library/socket.html#constants
 https://stackoverflow.com/questions/6380057/python-binding-socket-address-already-in-use
 https://devdocs.magento.com/guides/v2.3/config-guide/memcache/memcache_ubuntu.html
 https://www.tomshardware.com/how-to/stress-test-cpu-in-linux
+https://stackoverflow.com/questions/11370371/php-download-a-file-from-web-to-local-machine
