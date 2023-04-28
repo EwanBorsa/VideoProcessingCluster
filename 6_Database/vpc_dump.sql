@@ -1,22 +1,5 @@
-!/bin/bash
-sudo apt update
-sudo apt install mysql-server -y
-sudo mysql
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'roottest';
-exit
-sudo mysql_secure_installation -p
-mysql -u root -p 'roottest'
-ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
-exit
-sudo mysql
 CREATE DATABASE vpc;
 USE vpc;
-CREATE USER 'vpcAdmin'@'192.168.56.10' IDENTIFIED BY 'fgxDDFdxvjz__t6r78fo786';
-CREATE USER 'vpcAdmin'@'192.168.56.20' IDENTIFIED BY 'fgxDDFdxvjz__t6r78fo786';
-CREATE USER 'vpcAdmin'@'localhost' IDENTIFIED BY 'fgxDDFdxvjz__t6r78fo786';
-GRANT ALL ON vpc.* TO 'vpcAdmin'@'localhost';
-GRANT ALL ON vpc.* TO 'vpcAdmin'@'192.168.56.10';
-GRANT ALL ON vpc.* TO 'vpcAdmin'@'192.168.56.20';
 
 CREATE TABLE videoSessionPath
 (
