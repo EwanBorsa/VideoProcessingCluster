@@ -2,14 +2,15 @@
 if(!isset($_GET["session_id"]) or empty($_GET["session_id"])){
     $_GET["session_id"] = random_int(100000000, 999999999);
 }
+$directory = $_GET["session_id"];
+$ds = DIRECTORY_SEPARATOR;
+$storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
 uploadFile();
 function uploadFile(){
-    $directory = $_GET["session_id"];
+    
     shell_exec("../ffmpeg/create_directory.sh $directory");
     echo "uploading";
     if (!empty($_FILES)) {//se ci sono files...
-        $ds = DIRECTORY_SEPARATOR;
-        $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
         $tempFile = $_FILES['file']['tmp_name'];
         $targetPath = dirname( __FILE__ ) . $storeFolder . $directory . $ds;
         $targetFile =  $targetPath . $_FILES['file']['name'];
@@ -33,6 +34,10 @@ function uploadFile(){
             }
         }
     }*/
+}
+
+function generateVideosAndFrames(){
+    
 }
 require 'videoprocessing.php';
 ?>

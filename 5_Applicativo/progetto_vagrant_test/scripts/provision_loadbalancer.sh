@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt update
-sudo apt install haproxy
-sudo rm /etc/haproxy/haproxy.cfg
+sudo apt install haproxy -y
+#sudo rm /etc/haproxy/haproxy.cfg
