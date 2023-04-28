@@ -5,10 +5,10 @@ class UploadModel
     private $sessId;
     private $dbConn;
 
-    public function __construct()
+    public function __construct($dbConn)
     {
         $this->sessId = $this->createUUID();
-        //$this->dbConn = new mysqli('localhost', USERNAME, PASSWORD, DATABASE, PORT);
+        $this->dbConn = $dbConn;
     }
 
     public function getSessId(): string
@@ -19,7 +19,7 @@ class UploadModel
     public function uploadFile(): bool
     {
         $directory = $this->sessId;
-        shell_exec("application/scripts/create_directory.sh $directory");
+        shell_exec("../scripts/create_directory.sh $directory");
         if (!empty($_FILES)) {//se ci sono files...
             $ds = DIRECTORY_SEPARATOR;
             $storeFolder = $ds . '..' . $ds . 'uploads' . $ds;
@@ -34,16 +34,12 @@ class UploadModel
         return false;
     }
 
-
-
     # This small helper function generates  UUIDs.
     public function createUUID($data = null) {
         // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
         try {
             $data = $data ?? random_bytes(16);
-        } catch (Exception $e) {
-            return err;
-        }
+        } catch (Exception $e) {}
         assert(strlen($data) == 16);
 
         // Output the 32 characters UUID.

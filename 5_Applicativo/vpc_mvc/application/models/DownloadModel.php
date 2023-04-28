@@ -8,16 +8,16 @@ class DownloadModel
     /**
      * @param $id
      */
-    public function __construct($id)
+    public function __construct($dbConn, $sessId)
     {
-        $this->sessId = $id;
-        //$this->dbConn = new mysqli('localhost', USERNAME, PASSWORD, DATABASE, PORT);
+        $this->sessId = $sessId;
+        $this->dbConn = $dbConn;
     }
 
     public function downloadFile(): void
     {
-        $path = $this->dbConn->getPath($this->sessId);
-        $this->downloadFile($path);
+        //$path = $this->dbConn->getPath($this->sessId);
+        //$this->downloadFile($path);
     }
 
 }

@@ -13,5 +13,13 @@
     <link rel="stylesheet" href="application\views\_css\upload.css" type="text/css" >
     <link rel="stylesheet" href="application\views\_css\download.css" type="text/css" >
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script>
+        Dropzone.options.myGreatDropzone = { // camelized version of the `id`
+            paramName: "video", // The name that will be used to transfer the file
+            maxFilesize: 500, // MB
+            maxFiles: 1,
+            disablePreviews: true;
+        };
+    </script>
 </head>
 <body>

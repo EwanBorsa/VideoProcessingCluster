@@ -1,5 +1,7 @@
 <h1>Upload</h1>
-<form action="<?php echo URL?>\home\upload\" id="uploadform" class="dropzone" method="get">
+<form action="<?php echo URL?>\home\upload"
+      class="dropzone"
+      id="my-awesome-dropzone" method="get">
     <br>
     <div id="uploadCenter" class="rect-upload">
         <img src="application\views\_assets\upload.png" alt="ERR_UPLOAD_VIDEO_PNG" width="100px" style="margin:10px">
@@ -22,11 +24,3 @@
     <br>
     <input class="" type="submit">
 </form>
-<script>
-    Dropzone.options.myGreatDropzone = { // camelized version of the `id`
-        paramName: "video", // The name that will be used to transfer the file
-        maxFilesize: 500, // MB
-        maxFiles: 1,
-        disablePreviews: true;
-    };
-</script>

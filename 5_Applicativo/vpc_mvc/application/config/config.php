@@ -21,11 +21,11 @@ ini_set("display_errors", 1);
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 $dir = str_replace('\\','/',getcwd().'/');
-$dir = str_replace('//','/',getcwd().'/');
 $final = $actual_link.str_replace($documentRoot,'',$dir);
 define('URL', $final);
 
+define('HOST','localhost');
 define('USERNAME','root');
-define('PASSWORD','test');
+define('PASSWORD','root');
 define('DATABASE','vpc');
-define('PORT','3307');
+define('PORT','3306');

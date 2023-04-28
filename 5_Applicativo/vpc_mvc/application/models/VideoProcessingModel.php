@@ -2,14 +2,17 @@
 
 class VideoProcessingModel
 {
-    private const HEADER_SIGNATURE_LENGTH = 12;# 12B => Max bytes for check the signature.
-    private const MAX_FILE_SIZE = 500000000;# 500MB => Max of file size is 500 MegaBytes.
+    const HEADER_SIGNATURE_LENGTH = 12;# 12B => Max bytes for check the signature.
+    const MAX_FILE_SIZE = 500000000;# 500MB => Max of file size is 500 MegaBytes.
     private array $formats;
+    private $path;
+    private $dbConn;
 
-    public function __construct()
+    public function __construct($dbConn, $path)
     {
-        $this->formats = $this->getFormatList();
-
+        $this->dbConn = $dbConn;
+        $this->path = $path;
+        //$this->formats = $this->dbConn->getFormatList();
     }
 
     function checkVideo($path): bool
