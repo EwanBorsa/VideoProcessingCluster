@@ -23,11 +23,28 @@
         </video>
     </div>
     <div class="divButton">
-        <button id="bMotionVector">Scarica video con i motion vector</button><br><br><br>
+        <form method="get" action="download.php">
+            <input type="hidden" name="file_url" value="<?php $pathMV ?>">
+            <button type="submit">Scarica video con i motion vector</button>
+        </form>
+        <br>
+        <form method="get" action="download.php">
+            <input type="hidden" name="file_url" value="<?php $pathI ?>">
+            <button type="submit">Scarica video con I frame</button>
+        </form>
+        <br>
+        <form method="get" action="download.php">
+            <input type="hidden" name="file_url" value="<?php $pathB ?>">
+            <button type="submit">Scarica video con B frame</button>
+        </form>
+        <br>
+        <form method="get" action="download.php">
+            <input type="hidden" name="file_url" value="<?php $pathP ?>">
+            <button type="submit">Scarica video con P frame</button>
+        </form>
+        <br>
         
-        <button id="bVideoFrames">Scarica video con i frame selezionati</button><br><br>
-        
-        <form class="videoFrames">
+        <!--<form class="videoFrames">
             <input type="checkbox" id="framesVideoI" name="framesVideoI" value="I">
             <label for="framesVideoI"> I </label>
             <input type="checkbox" id="framesVideoB" name="framesVideoB" value="B">
@@ -45,7 +62,7 @@
             <label for="framesB"> B </label>
             <input type="checkbox" id="framesP" name="framesP" value="P">
             <label for="framesP"> P </label>
-        </form>
+        </form>-->
     </div>
     <h3>Statistica dei frame del video</h3>
     <div class="framePercTable">
@@ -56,9 +73,9 @@
                 <th>P Frame</th>
             </tr>
             <tr>
-                <td>0 - 0%</td>
-                <td>0 - 0%</td>
-                <td>0 - 0%</td>
+                <td><?php $statsI ?></td>
+                <td><?php $statsB ?></td>
+                <td><?php $statsP ?></td>
             </tr>
         </table>
     </div>  

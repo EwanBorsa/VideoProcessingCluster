@@ -1,0 +1,1 @@
+<?php require 'generate.php'; ?>

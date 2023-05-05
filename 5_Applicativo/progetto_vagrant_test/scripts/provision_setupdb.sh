@@ -1,6 +1,13 @@
 #!/bin/bash
 sudo apt update
 sudo apt install mysql-server -y
+
+
+sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i "s/.*port.*/port = 3306/" /etc/mysql/mysql.conf.d/mysqld.cnf
+
+sudo systemctl restart mysql.service
+
 #sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'roottest'"
 #sudo mysql_secure_installation -p
 #ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
@@ -19,7 +26,14 @@ GRANT ALL ON vpc.* TO 'vpcAdmin'@'192.168.56.20';
 CREATE TABLE videoSessionPath
 (
 	sessionId int primary key,
-	sessionPath VARCHAR(100)
+	pathBasicVideo VARCHAR(100),
+	pathIVideo VARCHAR(150),
+	pathBVideo VARCHAR(150),
+	pathPVideo VARCHAR(150),
+	pathMVVideo VARCHAR(150),
+	pathIFrames VARCHAR(150),
+	pathBFrames VARCHAR(150),
+	pathPFrames VARCHAR(150)
 );
 
 CREATE TABLE format(

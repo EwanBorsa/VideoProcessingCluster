@@ -11,7 +11,7 @@
 
 	<link rel="shortcut icon" type="image/x-icon" href="../images/upload.ico">
 	<link rel="stylesheet" href="../css/basic.css">
-	<link rel="stylesheet" href="../css/upload.css">
+	<link rel="stylesheet" href="../css/uploadView.css">
 	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     
 	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
@@ -35,12 +35,12 @@
 	</div>	
 </form>
 <form method="post" action="generate.php" enctype="multipart/form-data">
-            <input type="hidden" name="action" value="upload" />
-            <label>Carica il tuo file:</label>
-            <input type="file" name="user_file" />
-            <br />
-            <input type="submit" value="Carica online" />
-        </form>
+    <input type="hidden" name="action" value="upload" />
+    <label>Carica il tuo file:</label>
+    <input type="file" name="user_file" />
+    <br />
+    <input type="submit" value="Carica online" />
+</form>
 </body> 
 </html>
 

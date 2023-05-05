@@ -1,1 +1,1 @@
-ffmpeg -i $1 -vf "select='eq(pict_type,I)'" -vsync vfr $2/Iframe-%.jpeg
+ffmpeg -i $1 -vf "select='eq(pict_type,I)'" -vsync vfr $2/Iframe-%03d.jpeg
