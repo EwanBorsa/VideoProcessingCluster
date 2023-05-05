@@ -13,6 +13,7 @@ class VideoProcessingModel
         $this->dbConn = $dbConn;
         $this->path = $path;
         //$this->formats = $this->dbConn->getFormatList();
+        $this->process();
     }
 
     function checkVideo($path): bool
@@ -41,6 +42,32 @@ class VideoProcessingModel
         return -1;
     }
 
+    public function getTotFrame(): int
+    {
+        return 0;
+    }
 
+    public function getFrameStat($type): string
+    {
+        $frames = 0;
+        return $frames*100/$this->getTotFrame() . "%<br>nr." . $frames;
+    }
+
+    public function countFiles(): int
+    {
+        return 0;
+    }
+
+    public function process(): void
+    {
+        $srcDest =  " " . $this->path . " " . $this->path;
+        shell_exec(URL . "/scripts/generate_B_frames.sh" . $srcDest);
+        shell_exec(URL . "/scripts/generate_P_frames.sh " . $srcDest);
+        shell_exec(URL . "/scripts/generate_I_frames.sh " . $srcDest);
+        shell_exec(URL . "/scripts/generate_B_video.sh " . $srcDest . "_VideoB");
+        shell_exec(URL . "/scripts/generate_P_video.sh "  . $srcDest . "_VideoP");
+        shell_exec(URL . "/scripts/generate_I_video.sh "  . $srcDest . "_VideoI");
+        shell_exec(URL . "/scripts/generate_motion_vector_video.sh " . $srcDest . "_VideoB");
+    }
 
 }

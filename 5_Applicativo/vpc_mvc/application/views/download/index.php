@@ -38,9 +38,9 @@
             <th>P Frame</th>
         </tr>
         <tr>
-            <td><?php echo $franeIStat?></td>
-            <td><?php echo $franeBStat?></td>
-            <td><?php echo $franePStat?></td>
+            <td><?php echo $iFrameStat ?? 0 ?></td>
+            <td><?php echo $bFrameStat ?? 0 ?></td>
+            <td><?php echo $pFrameStat ?? 0 ?></td>
         </tr>
     </table>
 </div>

@@ -1,5 +1,5 @@
 <h1>Upload</h1>
-<form action="<?php echo URL?>\home\upload"
+<form action="\home\upload"
       class="dropzone"
       id="my-awesome-dropzone" method="get">
     <br>
